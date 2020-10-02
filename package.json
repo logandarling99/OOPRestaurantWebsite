@@ -1,0 +1,35 @@
+{
+  "name": "ooprestaurantwebsite",
+  "version": "1.0.0",
+  "description": "Restaurant system created for my OOP class. Full-Stack MERN used for development.",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "server": "nodemon server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/logandarling99/OOPRestaurantWebsite.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/logandarling99/OOPRestaurantWebsite/issues"
+  },
+  "homepage": "https://github.com/logandarling99/OOPRestaurantWebsite#readme",
+  "dependencies": {
+    "bcryptjs": "^2.4.3",
+    "body-parser": "^1.19.0",
+    "concurrently": "^5.3.0",
+    "express": "^4.17.1",
+    "is-empty": "^1.2.0",
+    "jsonwebtoken": "^8.5.1",
+    "mongoose": "^5.10.7",
+    "passport": "^0.4.1",
+    "passport-jwt": "^4.0.0",
+    "validator": "^13.1.17"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.4"
+  }
+}
