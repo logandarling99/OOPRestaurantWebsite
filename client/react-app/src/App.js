@@ -1,11 +1,28 @@
-import './App.css';
+import React, {Component} from "react";
+import { BrowserRouter as Router, Route } from "react-router-dom";
+import Register from "./components/auth/Register";
+import Login from "./components/auth/Login";
+import Landing from "./components/layout/Landing";
+import Navbar from "./components/layout/Navbar";
+import {Provider} from "react-redux";
+import store from "./store";
 
-function App() {
-  return (
-    <div className="App">
-      <h1>Hello</h1>
-    </div>
-  );
+class App extends Component {
+  render(){
+    return (
+    <Provider store={store}>
+      <Router>
+        
+          <div className="App">
+            <Navbar />
+            <Route exact path="/" component={Landing} />
+            <Route exact path="/register" component={Register} />
+            <Route exact path="/login" component={Login} />
+           </div>
+        </Router>
+    </Provider>    
+    );
+  }
 }
 
 export default App;

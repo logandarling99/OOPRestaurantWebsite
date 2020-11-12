@@ -6,7 +6,6 @@ const passport = require("passport");
 const users = require("./routes/api/users");
 
 const websiteBE = express();
-
 websiteBE.use(bodyParser.urlencoded({extended: false}));
 websiteBE.use(bodyParser.json());
 
@@ -24,6 +23,6 @@ require("./config/passport")(passport);
 
 websiteBE.use("/api/users", users);
 
+//loads the website on localhost after running server
 const port = process.env.PORT || 5000;
-
-websiteBE.listen(port, () => console.log(`Server up and running on port ${port} !`));
+websiteBE.listen(port, () => console.log(`Server up and running on port ${port}!`));

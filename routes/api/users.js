@@ -13,9 +13,7 @@ const validateLoginInput = require("../../validation/login");
 // Load User model
 const User = require("../../models/user-model");
 
-// @route POST api/users/register
-// @desc Register user
-// @access Public
+//POST route to register.js, Sends validations and checks against existing users
 router.post("/register", (req, res) => {
   // Form validation
 
@@ -26,6 +24,7 @@ router.post("/register", (req, res) => {
     return res.status(400).json(errors);
   }
 
+  //check if user exists, if not create a new user
   User.findOne({ email: req.body.email }).then(user => {
     if (user) {
       return res.status(400).json({ email: "Email already exists" });
@@ -51,9 +50,7 @@ router.post("/register", (req, res) => {
   });
 });
 
-// @route POST api/users/login
-// @desc Login user and return JWT token
-// @access Public
+//POSTS route to login.js, logs in user and return the jwt token for authentication
 router.post("/login", (req, res) => {
   // Form validation
 
@@ -84,7 +81,7 @@ router.post("/login", (req, res) => {
           name: user.name
         };
 
-        // Sign token
+        // Sign payload into json web token
         jwt.sign(
           payload,
           keys.secretOrKey,
@@ -98,7 +95,8 @@ router.post("/login", (req, res) => {
             });
           }
         );
-      } else {
+      } 
+      else {
         return res
           .status(400)
           .json({ passwordincorrect: "Password incorrect" });
