@@ -5,7 +5,7 @@ import { loginUser } from "../../actions/authActions";
 import PropTypes from "prop-types";
 import classnames from "classnames";
 
-class Register extends Component{
+class Login extends Component{
     constructor(){
         super();
         this.state = {
