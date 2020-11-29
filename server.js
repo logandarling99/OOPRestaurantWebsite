@@ -1,9 +1,11 @@
 const express = require("express");
 const mongoose = require("mongoose");
 const bodyParser = require("body-parser");
+const passport = require("passport");
+
+const users = require("./routes/api/users");
 
 const websiteBE = express();
-
 websiteBE.use(bodyParser.urlencoded({extended: false}));
 websiteBE.use(bodyParser.json());
 
@@ -15,6 +17,12 @@ mongoose
     .then(() => console.log("MongoDB connected successfully"))
     .catch(err => console.log(err));
 
-const port = process.env.PORT || 5000;
+websiteBE.use(passport.initialize());
 
-websiteBE.listen(port, () => console.log(`Server up and running on port ${port} !`));
+require("./config/passport")(passport);
+
+websiteBE.use("/api/users", users);
+
+//loads the website on localhost after running server
+const port = process.env.PORT || 5000;
+websiteBE.listen(port, () => console.log(`Server up and running on port ${port}!`));
