@@ -1,17 +1,16 @@
-
 const express = require("express");
 const router = express.Router();
 const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
-const keys = require("../../config/keys");
+const keys = require("./keys");
 const passport = require("passport");
 
 // Load input validation
-const validateRegisterInput = require("../../validation/register");
-const validateLoginInput = require("../../validation/login");
+const validateRegisterInput = require("./validator").validateRegisterInput;
+const validateLoginInput = require("./validator").validateLoginInput;
 
 // Load User model
-const User = require("../../models/user-model");
+const User = require("./user-model");
 
 //POST route to register.js, Sends validations and checks against existing users
 router.post("/register", (req, res) => {

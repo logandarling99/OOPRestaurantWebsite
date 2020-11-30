@@ -24,12 +24,43 @@ module.exports = function validateRegisterInput(input){
         errors.passwordConf = "Password confirmation is required";
     }
 
-    if(!validator.isLength(input.password, { max: 30})){
+    if(!validator.isLength(input.password, {max: 20})){
+        errors.password = "Password must be at least 6 characters";
+    }
+
+    if(!validator.isLength(input.email, {max: 20})){
+        errors.password = "Password must be at least 6 characters";
+    }
+    if(!validator.isLength(input.name, {max: 20})){
         errors.password = "Password must be at least 6 characters";
     }
 
     if(!validator.equals(input.password, input.passwordConf)){
         errors.passwordConf = "Passwords must match";
+    }
+
+    return{
+        errors,
+        isValid: isEmpty(errors)
+    };
+};
+
+
+module.exports = function validateLoginInput(input){
+    var errors = {};
+
+    input.email = !isEmpty(input.email)?input.email:"";
+    input.password = !isEmpty(input.password)?input.password:"";
+
+    if(validator.isEmpty(input.email)){
+        errors.email = "Email field is required";
+    }
+    else if(!validator.isEmail(input.email)){
+        errors.email = "Email is invalid";
+    }
+
+    if(validator.isEmpty(input.password)){
+        errors.password = "Password field is required";
     }
 
     return{

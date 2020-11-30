@@ -5,16 +5,18 @@ import{GET_ERRORS, SET_CURRENT_USER, USER_LOADING} from "./types";
 
 //Register User
 export const registerUser = (userData, history) => dispatch => {
-    axios.post("/api/users/register", userData)
+    axios
+        .post("/api/users/register", userData)
     //when registered, redirected to login page
-    axios.then(res => history.push("/login"))
-    .catch(err => dispatch({type: GET_ERRORS, payload: err.repose.data}));
+        .then(res => history.push("/login"))
+        .catch(err => dispatch({type: GET_ERRORS, payload: err.response.data}));
 };
 
 //Login User, gets user token
-export const LoginUser = userData => dispatch => {
-    axios.post("/api/users/login", userData)
-    axios.then(res => {
+export const loginUser = userData => dispatch => {
+    axios
+        .post("/api/users/login", userData)
+        .then(res => {
         //saving token
         const {token} = res.data;
         localStorage.setItem("jwtToken", token);
@@ -25,7 +27,7 @@ export const LoginUser = userData => dispatch => {
         //setting user
         dispatch(setCurrentUser(decoded));
     })
-    axios.catch(err =>
+        .catch(err =>
         dispatch({
             type: GET_ERRORS,
             payload: err.response.data

@@ -17,6 +17,12 @@ class Register extends Component{
         };
     }
 
+    componentDidMount(){
+        if(this.props.auth.isAuthenticated){
+            this.props.history.push("/layout");
+        }
+    }
+
     componentWillReceiveProps(nextProps){
         if(nextProps.errors){
             this.setState({
@@ -66,7 +72,7 @@ class Register extends Component{
                                     error={errors.name}
                                     id="name"
                                     type="text"
-                                    className={classnames("", {invalid: error.name})}
+                                    className={classnames("", {invalid: errors.name})}
                                 />
                                 <label htmlFor="name">Name</label>
                                 <span className="red-text">{errors.name}</span>
