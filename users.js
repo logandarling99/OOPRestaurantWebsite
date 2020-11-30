@@ -10,7 +10,7 @@ const validateRegisterInput = require("./validator").validateRegisterInput;
 const validateLoginInput = require("./validator").validateLoginInput;
 
 // Load User model
-const User = require("./user-model");
+const User = require("./user-schema");
 
 //POST route to register.js, Sends validations and checks against existing users
 router.post("/register", (req, res) => {
