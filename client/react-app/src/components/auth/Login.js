@@ -6,6 +6,7 @@ import { loginUser } from "../../actions/authActions";
 import classnames from "classnames";
 
 class Login extends Component {
+  //initializing state for holding login credentials
   constructor() {
     super();
     this.state = {
@@ -16,7 +17,7 @@ class Login extends Component {
   }
 
   componentDidMount() {
-    // If logged in and user navigates to Login page, should redirect them to dashboard
+    //if you are logged in, you will go to menu
     if (this.props.auth.isAuthenticated) {
       this.props.history.push("/dashboard");
     }
@@ -38,6 +39,7 @@ class Login extends Component {
     this.setState({ [e.target.id]: e.target.value });
   };
 
+  //when login info submitted, add info to variable and send it to action handler
   onSubmit = e => {
     e.preventDefault();
 

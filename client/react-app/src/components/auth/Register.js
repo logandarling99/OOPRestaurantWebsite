@@ -6,17 +6,19 @@ import PropTypes from "prop-types";
 import classnames from "classnames";
 
 class Register extends Component{
+    //initializing state of user
     constructor(){
         super();
         this.state = {
             name: "",
             email: "",
             password: "",
-            password2: "",
+            passwordConf: "",
             errors: {}
         };
     }
 
+    //when register is loaded, check if you have token, if so go to menu
     componentDidMount(){
         if(this.props.auth.isAuthenticated){
             this.props.history.push("/dashboard");
@@ -35,13 +37,14 @@ class Register extends Component{
         this.setState({[e.target.id]: e.target.value});
     };
 
+    //when button submmited, create new user and send it to action handler
     onSubmit = e => {
         e.preventDefault();
         const newUser = {
             name: this.state.name,
             email: this.state.email,
             password: this.state.password,
-            password2: this.state.password2
+            passwordConf: this.state.passwordConf
         };
         this.props.registerUser(newUser, this.props.history);
     };
@@ -104,14 +107,14 @@ class Register extends Component{
                             <div className="input-field col s12">
                                 <input
                                     onChange={this.onChange}
-                                    value={this.state.password2}
-                                    error={errors.password2}
-                                    id="password2"
+                                    value={this.state.passwordConf}
+                                    error={errors.passwordConf}
+                                    id="passwordConf"
                                     type="password"
-                                    className={classnames("", {invalid: errors.password2})}
+                                    className={classnames("", {invalid: errors.passwordConf})}
                                 />
-                                <label htmlFor="password2">Confirm Password</label>
-                                <span className="red-text">{errors.password2}</span>
+                                <label htmlFor="passwordConf">Confirm Password</label>
+                                <span className="red-text">{errors.passwordConf}</span>
                             </div>
                             <div className="col s12" style={{paddingLeft: "11:250px"}}>
                                 <button
