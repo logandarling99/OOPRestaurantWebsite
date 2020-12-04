@@ -3,13 +3,14 @@ const mongoose = require("mongoose");
 const bodyParser = require("body-parser");
 const passport = require("passport");
 
-const users = require("./routes/api/users");
+const users = require("./users");
+var cors = require('cors');
 
 const websiteBE = express();
 websiteBE.use(bodyParser.urlencoded({extended: false}));
 websiteBE.use(bodyParser.json());
 
-const db = require("./config/keys").mongoURI;
+const db = require("./keys").mongoURI;
 
 mongoose
     .connect(
@@ -18,10 +19,11 @@ mongoose
     .catch(err => console.log(err));
 
 websiteBE.use(passport.initialize());
+websiteBE.use(cors());
 
-require("./config/passport")(passport);
+require("./passport")(passport);
 
-websiteBE.use("/api/users", users);
+websiteBE.use("/users", users);
 
 //loads the website on localhost after running server
 const port = process.env.PORT || 5000;
