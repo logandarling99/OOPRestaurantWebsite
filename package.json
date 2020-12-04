@@ -8,7 +8,7 @@
     "server": "nodemon server.js",
     "client-install": "npm install --prefix client",
     "client": "npm start --prefix client\\react-app",
-    "dev": "concurrently \"npm run server\" \"npm run client\""
+    "proj": "concurrently \"npm run server\" \"npm run client\""
   },
   "repository": {
     "type": "git",
