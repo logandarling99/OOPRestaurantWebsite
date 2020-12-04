@@ -99,6 +99,7 @@ class Dashboard extends Component {
     return (
       <div className="section">
         <div className="row">
+          {/*The cards for bread, drink, desser and all the info on the purchasable items */}
           <h5>BREAD</h5>
           <div className="col m3">
             <div className="card">

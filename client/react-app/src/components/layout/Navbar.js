@@ -13,6 +13,7 @@ class Navbar extends Component{
 
     render(){
         const { isAuthenticated, user } = this.props.auth;
+        //checks if admin
         function admin() {
             if(user.name === "admin"){
                 return true;
@@ -21,7 +22,7 @@ class Navbar extends Component{
                 return false;
             }
         }
-
+        //custom navbar based on user level
         const adminLinks = (
             <ul className="navbar-nav ml-auto">
               <li className="nav-item">

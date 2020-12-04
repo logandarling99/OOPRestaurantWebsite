@@ -17,14 +17,11 @@ export const loginUser = userData => dispatch => {
     axios
         .post("/users/login", userData)
         .then(res => {
-        //saving token
+        //sets token to returned user info and puts it into localstorage so you can always be logged in and have auth
         const {token} = res.data;
         localStorage.setItem("jwtToken", token);
-        //setting token to authorized
         setAuthToken(token);
-        //Getting user data from token
         const decoded = jwt_decode(token);
-        //setting user
         dispatch(setCurrentUser(decoded));
     })
         .catch(err =>
